@@ -10,6 +10,9 @@ Container::Container(StateCont* sendedState, StateCont* notSendedState)
 	this->sendedState = sendedState;
 	this->notSendedState = notSendedState;
 
+	sendedState->setContainer(this);
+	notSendedState->setContainer(this);
+
 	myState = notSendedState;
 }
 
@@ -126,6 +129,7 @@ void Container::print_wall_karkas()
 
 void Container::putParcel()
 {
+
 }
 
 /*
