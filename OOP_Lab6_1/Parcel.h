@@ -20,6 +20,7 @@ public:
 	double visota;
 	double dlina;
 	double weight;
+	int status;
 
 public:
 	Parcel();
@@ -43,5 +44,8 @@ public:
 	virtual void set_information(Language* lang);
 	double get_obem();
 	vector <double> get_dimensions();
+
+	void update(int state);
+	int get_status();
 };
 

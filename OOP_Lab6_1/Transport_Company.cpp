@@ -416,21 +416,29 @@ ESC) Выход\n\nОбщее количество посылок на данный момент: " << parcel_spisok.size
             Parcel* parc_temp = new Parcel("Барнаул", "Пермь", 2, 4, 6, 56, 0);   //1 посылка, успешно помещена (48 единиц)
             Parc.push_back(parc_temp);
 
-            parc_temp = new Parcel("Москва", "Пермь", 7, 8, 5, 200, 0);   //2 посылка, не помещена, т.к. габариты большие (280 ед)
-            Parc.push_back(parc_temp);
+            Parcel* parc_temp1 = new Parcel("Москва", "Пермь", 7, 8, 5, 200, 0);   //2 посылка, не помещена, т.к. габариты большие (280 ед)
+            Parc.push_back(parc_temp1);
 
-            parc_temp = new Parcel("Новосибирск", "Пермь", 6, 5, 3, 603, 0);   //3 посылка, успешно помещена (90 ед)
-            Parc.push_back(parc_temp);
+            Parcel* parc_temp2 = new Parcel("Новосибирск", "Пермь", 6, 5, 3, 603, 0);   //3 посылка, успешно помещена (90 ед)
+            Parc.push_back(parc_temp2);
 
-            parc_temp = new Parcel("Нижний Новгород", "Пермь", 3, 6, 5, 123, 0);   //4 посылка, успешно помещена (90 ед)
-            Parc.push_back(parc_temp);
+            Parcel* parc_temp3 = new Parcel("Нижний Новгород", "Пермь", 3, 6, 5, 123, 0);   //4 посылка, успешно помещена (90 ед)
+            Parc.push_back(parc_temp3);
 
-            parc_temp = new Parcel("Уфа", "Пермь", 4, 3, 2, 16, 0);   //5 посылка, не помещена, т.к. контейнер уже отправлен
-            Parc.push_back(parc_temp);
+            Parcel* parc_temp4 = new Parcel("Уфа", "Пермь", 4, 3, 2, 16, 0);   //5 посылка, не помещена, т.к. контейнер уже отправлен
+            Parc.push_back(parc_temp4);
+
 
             for (int i = 0;i < Parc.size();i++)
             {
+                Parc[i]->get_status(); // состояние ДО попытки размещения
                 myCont->putParcel(Parc[i]);     //помещение посылки в контейнер
+                Parc[i]->get_status(); // состояние ПОСЛЕ попытки размещения
+            }
+
+            for (int i = 0;i < Parc.size();i++)
+            {
+                Parc[i]->get_status(); // состояние после отправки контейнера
             }
 
             //удаление созданных объектов
@@ -438,6 +446,10 @@ ESC) Выход\n\nОбщее количество посылок на данный момент: " << parcel_spisok.size
             delete state1;
             delete state2;
             delete parc_temp;
+            delete parc_temp1;
+            delete parc_temp2;
+            delete parc_temp3;
+            delete parc_temp4;
 
 
             /*      //строитель

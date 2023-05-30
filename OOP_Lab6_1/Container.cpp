@@ -65,6 +65,15 @@ void Container::get_parcel(Parcel* parc)
 		//отправить контейнер?!
 		cout << "\n\nКонтейнер заполнен >= 75%. Отправка контейнера.\n";
 		this->myState = sendedState;
+
+		for (int i = 0; i < parce.size(); i++)
+		{
+			parce[i]->update(2);
+		}
+	}
+	else
+	{
+		parc->update(1);
 	}
 }
 

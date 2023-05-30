@@ -15,6 +15,8 @@ Parcel::Parcel(string town_sender, string town_recipient, double shirina, double
 	this->obem = this->dlina * this->visota * this->shirina;	//подсчет объема
 	this->weight = weight;
 	this->danger = danger;
+
+	status = 0;
 }
 
 void Parcel::set_parcel(Parcel* parc)
@@ -147,4 +149,33 @@ vector <double> Parcel::get_dimensions()
 	dimensions.push_back(this->weight);
 	
 	return dimensions;
+}
+
+void Parcel::update(int state)
+{
+	status = state;
+}
+
+int Parcel::get_status()
+{
+	//можно сделать вывод сообщения
+	//0 - посылка в распределительном центре или что-то такое
+	//1 - посылка помещена в контейнер
+	//2 - посылка в пути
+
+	cout << "Посылка такая-то, статус: ";
+	if (status == 0)
+	{
+		cout << "0\n";
+	}
+	else if (status == 1)
+	{
+		cout << "1\n";
+	}
+	else
+	{
+		cout << "2\n";
+	}
+
+	return status;
 }
