@@ -3,5 +3,7 @@
 class SendedStateCont :
     public StateCont
 {
+public:
+    void putParcel(Parcel* parcel);
 };
 

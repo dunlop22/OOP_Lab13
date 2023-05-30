@@ -24,6 +24,9 @@ int main()
     //создание большого контейнера с состояниями
     Container* myCont = new Big_Cont(state2, state1);
 
+    //сделать создание посылки, посылку запихать в контейнер
+    //запихать в контейнер столько, чтоб кончилось место и он был отправлен
+
 
 
     /*Transport_Company* tr_company = Transport_Company::Instance();

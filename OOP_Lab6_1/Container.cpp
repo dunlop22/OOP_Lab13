@@ -51,7 +51,6 @@ int Container::get_id()
 
 void Container::get_parcel(Parcel* parc)
 {
-	//запихивание в контейнер посылки сделать в методе состо€ни€ неќтправлен
 	this->town = parc->get_town();
 	this->parce.push_back(parc);	//помещение посылки в список
 	this->free_obem = this->free_obem - parc->obem;
