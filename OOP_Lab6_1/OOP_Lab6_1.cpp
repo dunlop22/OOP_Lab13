@@ -17,10 +17,14 @@ int main()
     SetConsoleCP(1251);
     srand(time(NULL));  //для генерации случайных id
 
+    //создание состояний
     StateCont* state1 = new NotSendedStateCont();
     StateCont* state2 = new SendedStateCont();
 
+    //создание большого контейнера с состояниями
     Container* myCont = new Big_Cont(state2, state1);
+
+
 
     /*Transport_Company* tr_company = Transport_Company::Instance();
     Transport_Company* tr_company1 = Transport_Company::Instance();
@@ -29,6 +33,7 @@ int main()
     _getch();
     tr_company->start_work();*/
 
+    //удаление созданных объектов
     delete myCont;
     delete state1;
     delete state2;

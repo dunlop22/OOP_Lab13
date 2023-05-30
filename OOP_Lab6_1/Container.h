@@ -55,6 +55,8 @@ public:
 	virtual void print_information_c(int tip);
 	virtual vector<Parcel> get_inf_parcel();
 	void print_wall_karkas();
+
+	void putParcel();
 	//void get_cost_cont();
 };
 

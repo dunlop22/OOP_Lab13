@@ -48,11 +48,20 @@ int Container::get_id()
 
 void Container::get_parcel(Parcel parc)
 {
+	//запихивание в контейнер посылки сделать в методе состояния неОтправлен
 	this->town = parc.get_town();
 	this->parce.push_back(parc);	//помещение посылки в список
 	this->free_obem = this->free_obem - parc.obem;
 	this->kol_vo_parcel = kol_vo_parcel + 1;
+
+	//достигнут нужный объём - отправление посылки
+	//сделать - ПРОВЕРКА ЧТО ДОСТИГНУТ ОБЪЕМ 
+	this->myState = sendedState;
+
+	//отправить контейнер?!
 }
+
+
 
 
 
@@ -113,6 +122,10 @@ void Container::print_wall_karkas()
 	cout << "\nВысота контейнера: " << this->sWall->get_dlina();
 	cout << "\nШирина контейнера: " << this->sWall->get_shirina();
 	cout << "\nДлина контейнера: "  << this->bWall->get_shirina();
+}
+
+void Container::putParcel()
+{
 }
 
 /*
