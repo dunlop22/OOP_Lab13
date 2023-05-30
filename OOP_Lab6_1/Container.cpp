@@ -5,6 +5,14 @@ Container::Container()
 {
 }
 
+Container::Container(StateCont* sendedState, StateCont* notSendedState)
+{
+	this->sendedState = sendedState;
+	this->notSendedState = notSendedState;
+
+	myState = notSendedState;
+}
+
 Container::Container(SmallWall* sWall1, BigWall* bWall1, Karkas* kark1)
 {
 	this->bWall = bWall1;

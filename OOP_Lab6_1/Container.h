@@ -5,6 +5,7 @@
 #include "SmallWall.h"
 #include "BigWall.h"
 #include "Karkas.h"
+#include "StateCont.h"
 
 using namespace std;
 
@@ -13,7 +14,7 @@ class Container
 	//маленький
 	//большой
 	//для опасных грузов
-
+private:
 	int id;	//уникальный номер
 	string town;	//направление контейнера
 	vector<Parcel> parce;
@@ -21,6 +22,11 @@ class Container
 	Karkas* kark;
 	BigWall* bWall;
 	SmallWall* sWall;
+
+	StateCont* myState;
+
+	StateCont* sendedState;
+	StateCont* notSendedState;
 
 public:
 	double cost = 0;
@@ -36,6 +42,7 @@ protected:
 
 public:
 	Container();
+	Container(StateCont* sendedState, StateCont* notSendedState);
 	Container(SmallWall* sWall1, BigWall* bWall1, Karkas* kark1);
 	virtual double space_obem();
 	virtual int gen_vid_transporta();	//генерация варианта отправки
