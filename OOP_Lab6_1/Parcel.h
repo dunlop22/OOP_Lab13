@@ -22,6 +22,8 @@ public:
 	double weight;
 
 public:
+	Parcel();
+	Parcel(string town_sender, string town_recipient, double shirina, double visota, double dlina, double weight, int danger);
 	virtual void set_parcel(Parcel* parc);  //установка значения объекта
 	virtual bool check_info();  //проверка вводимой инфомации
 	virtual bool send_parcel();   //генерация случайного события. будет отправлена посылка или нет     с вероятностью 1/3
@@ -39,7 +41,7 @@ public:
 
 	//внесение информации о посылке
 	virtual void set_information(Language* lang);
-
+	double get_obem();
 	vector <double> get_dimensions();
 };
 

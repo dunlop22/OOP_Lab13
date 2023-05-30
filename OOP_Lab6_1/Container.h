@@ -59,6 +59,7 @@ public:
 	void print_wall_karkas();
 
 	void putParcel(Parcel* parcel);
+	double get_procent_occupancy();		//проверка заполненности контейнера
 	//void get_cost_cont();
 };
 

@@ -56,11 +56,16 @@ void Container::get_parcel(Parcel* parc)
 	this->free_obem = this->free_obem - parc->obem;
 	this->kol_vo_parcel = kol_vo_parcel + 1;
 
-	//достигнут нужный объём - отправление посылки
+	//достигнут нужный объём - отправление контейнера
+	 
+	
 	//сделать - ПРОВЕРКА ЧТО ДОСТИГНУТ ОБЪЕМ 
-	this->myState = sendedState;
-
-	//отправить контейнер?!
+	if (this->get_procent_occupancy() >= 75)
+	{
+		//отправить контейнер?!
+		cout << "\n\nКонтейнер заполнен >= 75%. Отправка контейнера.\n";
+		this->myState = sendedState;
+	}
 }
 
 
@@ -129,6 +134,11 @@ void Container::print_wall_karkas()
 void Container::putParcel(Parcel* parcel)
 {
 	myState->putParcel(parcel);
+}
+
+double Container::get_procent_occupancy()
+{
+	return ((space - free_obem) / space * 100);
 }
 
 /*

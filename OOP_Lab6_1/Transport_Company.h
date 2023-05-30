@@ -25,6 +25,10 @@
 #include "PoolDangerCont.h"		//пул опасных контейнеров (LR9-10)
 #include "FactoryMethod.h"		//фабричный метод (LR9-10)
 #include "Director.h"			//строитель (LR11)
+
+#include "SendedStateCont.h"	//состояние (LR13)
+#include "NotSendedStateCont.h"	//состояние (LR13)
+
 using namespace std;
 class Transport_Company
 {

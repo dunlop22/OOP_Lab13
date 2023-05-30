@@ -38,7 +38,7 @@ void Transport_Company::start_work()
 4) Абстрактная фабрика (Посылка + коробка)\n\
 5) Прототип (Журнал, Письмо)\n\
 6) Пул опасных контейнеров\n\
-7) Строитель контейнеров\n\
+7) Состояние и наблюдатель\n\
 ESC) Выход\n\nОбщее количество посылок на данный момент: " << parcel_spisok.size() << "\nОбщее количество контейнеров на данный момент: " << container_spisok.size() << "\n";
             func = _getch();
         } while (func < 49 || func > 55 && func != 27);
@@ -401,10 +401,46 @@ ESC) Выход\n\nОбщее количество посылок на данный момент: " << parcel_spisok.size
             _getch();
             delete pool_cont;
         }
-        else if (func == 55)       //строитель 
+        else if (func == 55)       //состояние и наблюдатель 
         {
             system("cls");      //очистка экрана консоли
-            
+             //создание состояний
+            StateCont* state1 = new NotSendedStateCont();
+            StateCont* state2 = new SendedStateCont();
+
+            //создание большого контейнера с состояниями
+            Container* myCont = new Big_Cont(state2, state1);       //объем - 300
+
+            //создание посылок, которые будут помещены в контейнер
+            vector<Parcel*> Parc;
+            Parcel* parc_temp = new Parcel("Барнаул", "Пермь", 2, 4, 6, 56, 0);   //1 посылка, успешно помещена (48 единиц)
+            Parc.push_back(parc_temp);
+
+            parc_temp = new Parcel("Москва", "Пермь", 7, 8, 5, 200, 0);   //2 посылка, не помещена, т.к. габариты большие (280 ед)
+            Parc.push_back(parc_temp);
+
+            parc_temp = new Parcel("Новосибирск", "Пермь", 6, 5, 3, 603, 0);   //3 посылка, успешно помещена (90 ед)
+            Parc.push_back(parc_temp);
+
+            parc_temp = new Parcel("Нижний Новгород", "Пермь", 3, 6, 5, 123, 0);   //4 посылка, успешно помещена (90 ед)
+            Parc.push_back(parc_temp);
+
+            parc_temp = new Parcel("Уфа", "Пермь", 4, 3, 2, 16, 0);   //5 посылка, не помещена, т.к. контейнер уже отправлен
+            Parc.push_back(parc_temp);
+
+            for (int i = 0;i < Parc.size();i++)
+            {
+                myCont->putParcel(Parc[i]);     //помещение посылки в контейнер
+            }
+
+            //удаление созданных объектов
+            delete myCont;
+            delete state1;
+            delete state2;
+            delete parc_temp;
+
+
+            /*      //строитель
             Builder* buil = new Builder();
             Director* direc = new Director(buil);
 

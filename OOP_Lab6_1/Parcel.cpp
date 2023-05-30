@@ -1,5 +1,22 @@
 #include "Parcel.h"
 
+Parcel::Parcel()
+{
+}
+
+Parcel::Parcel(string town_sender, string town_recipient, double shirina, double visota, double dlina, double weight, int danger)
+{
+	this->generate_id();	//присвоение уникального номера
+	this->town_sender = town_sender;
+	this->town_recipient = town_recipient;
+	this->shirina = shirina;
+	this->visota = visota;
+	this->dlina = dlina;
+	this->obem = this->dlina * this->visota * this->shirina;	//подсчет объема
+	this->weight = weight;
+	this->danger = danger;
+}
+
 void Parcel::set_parcel(Parcel* parc)
 {
 }
@@ -113,6 +130,11 @@ void Parcel::set_information(Language* lang)
 	lang->any_key_to_cont();
 	cin.ignore();
 	_getch();
+}
+
+double Parcel::get_obem()
+{
+	return this->obem;
 }
 
 vector <double> Parcel::get_dimensions()
