@@ -49,12 +49,12 @@ int Container::get_id()
 }
 
 
-void Container::get_parcel(Parcel parc)
+void Container::get_parcel(Parcel* parc)
 {
 	//запихивание в контейнер посылки сделать в методе состо€ни€ неќтправлен
-	this->town = parc.get_town();
+	this->town = parc->get_town();
 	this->parce.push_back(parc);	//помещение посылки в список
-	this->free_obem = this->free_obem - parc.obem;
+	this->free_obem = this->free_obem - parc->obem;
 	this->kol_vo_parcel = kol_vo_parcel + 1;
 
 	//достигнут нужный объЄм - отправление посылки
@@ -92,7 +92,7 @@ void Container::print_information_c(int tip)
 	for (int i = 0;i < parce.size();i++)
 	{
 		cout << "     --";
-		this->parce[i].print_information();
+		this->parce[i]->print_information();
 	}
 	if (tip == 1)
 	{
@@ -114,7 +114,7 @@ void Container::print_information_c(int tip)
 	
 }
 
-vector<Parcel> Container::get_inf_parcel()
+vector<Parcel*> Container::get_inf_parcel()
 {
 	return this->parce;
 }
@@ -127,7 +127,7 @@ void Container::print_wall_karkas()
 	cout << "\nƒлина контейнера: "  << this->bWall->get_shirina();
 }
 
-void Container::putParcel()
+void Container::putParcel(Parcel* parcel)
 {
 
 }

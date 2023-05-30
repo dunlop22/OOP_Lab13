@@ -1,6 +1,6 @@
 #include "Info_Expert.h"
 
-Info_Expert::Info_Expert(vector <Parcel> parc_spisok_old)
+Info_Expert::Info_Expert(vector <Parcel*> parc_spisok_old)
 {
 	copy(parc_spisok_old.begin(), parc_spisok_old.end(), back_inserter(parc_spisok));
 }
@@ -15,7 +15,7 @@ void Info_Expert::get_dimensions_count()
 		double sum_potr = 0;
 		vector <double> temp;
 
-		temp = parc_spisok[i].get_dimensions();	//получение размеров посылок
+		temp = parc_spisok[i]->get_dimensions();	//получение размеров посылок
 
 		sum = temp[4] * 250;		//стоимость перевозки фактическая	1кг перевозимого груза - 250руб (для перевозчика / фактические расходы на перевозку)
 		sum_potr = temp[4] * 350;

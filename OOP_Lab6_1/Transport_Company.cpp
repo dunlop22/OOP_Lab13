@@ -18,8 +18,8 @@ Transport_Company* Transport_Company::Instance()
 
 void Transport_Company::start_work()
 {
-    std::vector<Parcel> parcel_spisok;
-    std::vector<Container> container_spisok;
+    std::vector<Parcel*> parcel_spisok;
+    std::vector<Container*> container_spisok;
     Language* rus = new RusLanguage();  //установка языка
 
     setlocale(LC_ALL, "Russian");
@@ -57,12 +57,12 @@ ESC) Выход\n\nОбщее количество посылок на данный момент: " << parcel_spisok.size
 
             for (int i = 0; i < new_parcel; i++)
             {
-                Parcel parce_temp;      //элемент списка посылка
+                Parcel* parce_temp = new Parcel();      //элемент списка посылка
                 Parcel* Prox;
                 do
                 {
-                    parce_temp.set_information(rus);
-                    Prox = new ProxyParcel(&parce_temp);
+                    parce_temp->set_information(rus);
+                    Prox = new ProxyParcel(parce_temp);
                 } while (!(Prox->check_info()));        //минимальная  проверка. Опасный груз не может быть больше 50усл.ед.
 
                 parcel_spisok.push_back(parce_temp);        //добавление посылки в список
@@ -117,7 +117,7 @@ ESC) Выход\n\nОбщее количество посылок на данный момент: " << parcel_spisok.size
                 for (int i = 0;i < container_spisok.size();i++)
                 {
                     cout << "Контейнер №: " << i + 1 << "\n";
-                    container_spisok[i].print_information_c(1);
+                    container_spisok[i]->print_information_c(1);
                     /*
                     container_spisok[i].get_cost_cont();        //подсчет стоимости перевозок посылок, содержащихся в контейнере
                     cout << "\nСтоимость посылок в контейнере: " << container_spisok[i].cost << "\n\n";
@@ -166,7 +166,7 @@ ESC) Выход\n\nОбщее количество посылок на данный момент: " << parcel_spisok.size
                 Composite_Cont* Compos = new Composite_Cont();
                 for (int m = 0;m < container_spisok.size();m++)
                 {
-                    Compos->accumulation_parcel(&(container_spisok[m]));    //проверка распределения контейнера с дальнейшим определением в транспорт
+                    Compos->accumulation_parcel(container_spisok[m]);    //проверка распределения контейнера с дальнейшим определением в транспорт
                 }
 
                 //удаление списка контейнеров
@@ -212,7 +212,7 @@ ESC) Выход\n\nОбщее количество посылок на данный момент: " << parcel_spisok.size
                 //добавление посылок в контейнер
                 for (int i = 0;i < parcel_spisok.size(); i++)
                 {
-                    contain.push(&(parcel_spisok[i]));
+                    contain.push(parcel_spisok[i]);
                 }
 
                 for (MyCont_Parcel::myIter it = contain.begin(); it != contain.end(); ++it) {
