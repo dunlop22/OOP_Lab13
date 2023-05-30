@@ -128,7 +128,7 @@ void Container::print_wall_karkas()
 
 void Container::putParcel(Parcel* parcel)
 {
-
+	myState->putParcel(parcel);
 }
 
 /*
